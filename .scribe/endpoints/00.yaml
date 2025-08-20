@@ -1,0 +1,256 @@
+name: 'Account Management'
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/login
+    metadata:
+      groupName: 'Account Management'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: Login
+      description: ''
+      authenticated: false
+      deprecated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      uuid:
+        name: uuid
+        description: 'The user UUID generated during registration.'
+        required: true
+        example: 8d12f965-3c2a-4d7e-91ef-5a1b2c6d8e34
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      password:
+        name: password
+        description: 'The password of the user.'
+        required: true
+        example: '123456'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      uuid: 8d12f965-3c2a-4d7e-91ef-5a1b2c6d8e34
+      password: '123456'
+    fileParameters: []
+    responses: []
+    responseFields:
+      message:
+        name: message
+        description: ''
+        required: true
+        example: null
+        type: 'Success or error message.'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      token:
+        name: token
+        description: ''
+        required: true
+        example: null
+        type: 'The generated access token.'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/register
+    metadata:
+      groupName: 'Account Management'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: Register
+      description: 'Create a new account with password and pin.'
+      authenticated: false
+      deprecated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      password:
+        name: password
+        description: 'Must be at least 6 characters long.'
+        required: true
+        example: '123456'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      pin:
+        name: pin
+        description: 'Must be 6 digits long.'
+        required: true
+        example: '123456'
+        type: numeric
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      password_confirmation:
+        name: password_confirmation
+        description: 'Must be the same as password.'
+        required: true
+        example: '123456'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      pin_confirmation:
+        name: pin_confirmation
+        description: 'Must be the same as pin.'
+        required: true
+        example: '123456'
+        type: numeric
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      password: '123456'
+      pin: '123456'
+      password_confirmation: '123456'
+      pin_confirmation: '123456'
+    fileParameters: []
+    responses: []
+    responseFields:
+      message:
+        name: message
+        description: ''
+        required: true
+        example: null
+        type: 'Success message.'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      uuid:
+        name: uuid
+        description: ''
+        required: true
+        example: null
+        type: 'The generated UUID for the user which serves as the identifier.'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PATCH
+    uri: api/v1/reset-password
+    metadata:
+      groupName: 'Account Management'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Reset Password'
+      description: 'Set a new password by providing a wallet address linked to the user and the correct pin.'
+      authenticated: false
+      deprecated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      wallet_address:
+        name: wallet_address
+        description: 'Must be a valid wallet address.'
+        required: true
+        example: '0x57d90b64a1a57749b0f932f1a3395792e12e7055'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      password:
+        name: password
+        description: 'Must be at least 6 characters long.'
+        required: true
+        example: '123456'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      pin:
+        name: pin
+        description: 'The 6-digit pin set during registration.'
+        required: true
+        example: '123456'
+        type: numeric
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      password_confirmation:
+        name: password_confirmation
+        description: 'Must be the same as password.'
+        required: true
+        example: '123456'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      wallet_address: '0x57d90b64a1a57749b0f932f1a3395792e12e7055'
+      password: '123456'
+      pin: '123456'
+      password_confirmation: '123456'
+    fileParameters: []
+    responses: []
+    responseFields:
+      message:
+        name: message
+        description: 'Success or error message.'
+        required: true
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
