@@ -16,7 +16,6 @@ class LoginController extends Controller
         if ($user?->verifyHash($request->validated('password'), 'password')) {
             return response()->json([
                 'message' => 'Logged in successfully.',
-                'uuid' => $user->uuid,
                 'token' => $user->createToken('token')->plainTextToken,
             ]);
         }

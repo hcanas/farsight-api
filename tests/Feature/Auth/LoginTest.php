@@ -40,7 +40,6 @@ class LoginTest extends TestCase
             ->assertOk()
             ->assertJsonStructure([
                 'message',
-                'uuid',
                 'token',
             ]);
     }
