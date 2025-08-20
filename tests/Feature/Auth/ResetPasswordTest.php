@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Wallet;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
 class ResetPasswordTest extends TestCase
@@ -34,8 +35,8 @@ class ResetPasswordTest extends TestCase
 
         $this->inputs = [
             'wallet_address' => $this->wallet->address,
-            'password' => 'password',
-            'password_confirmation' => 'password',
+            'password' => 'new-password',
+            'password_confirmation' => 'new-password',
             'pin' => $pin,
         ];
 
@@ -44,8 +45,12 @@ class ResetPasswordTest extends TestCase
 
     public function test_can_reset_password(): void
     {
-        $this->patchJson($this->url, $this->inputs)
-            ->assertOk()
-            ->assertJsonStructure(['message']);
+        $response = $this->patchJson($this->url, $this->inputs);
+
+        $response->assertOk();
+        $response->assertJsonStructure(['message']);
+
+        $this->user->refresh();
+        $this->assertTrue(Hash::check($this->inputs['password'], $this->user->password));
     }
 }
